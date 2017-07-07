@@ -80,6 +80,7 @@
                 </dependencies>
             </plugin>
 
+            <!-- Maven assembly must be run after proguard obfuscation so it take already obfuscated files.-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
