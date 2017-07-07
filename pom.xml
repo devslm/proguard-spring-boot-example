@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.slm.proguard.example</groupId>
+    <artifactId>spring.boot</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <spring.boot.version>1.5.1.RELEASE</spring.boot.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>proguard</goal></goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardVersion>5.3.3</proguardVersion>
+                    <injar>${project.build.finalName}.jar</injar>
+                    <outjar>${project.build.finalName}.jar</outjar>
+                    <obfuscate>true</obfuscate>
+                    <options>
+                        <option>-dontshrink</option>
+                        <option>-dontoptimize</option>
+                        <!-- This option will replace all strings in reflections method invocations with new class names.
+                             For example, invokes Class.forName('className')-->
+                        <option>-adaptclassstrings</option>
+                        <!-- This option will save all original annotations and etc. Otherwise all we be removed from files.-->
+                        <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,
+                            SourceFile,LineNumberTable,*Annotation*,EnclosingMethod</option>
+                        <!-- This option will save all original names in interfaces (without obfuscate).-->
+                        <option>-keepnames interface **</option>
+                        <!-- This option will save all original methods parameters in files defined in -keep sections,
+                             otherwise all parameter names will be obfuscate.-->
+                        <option>-keepparameternames</option>
+                        <!-- This option will save all original class files (without obfuscate) but obfuscate all in domain package.-->
+                        <option>-keep class !com.slm.proguard.example.spring.boot.domain.** { *; }</option>
+                        <!-- This option will save all original class files (without obfuscate) in service package-->
+                        <!--<option>-keep class com.slm.proguard.example.spring.boot.service { *; }</option>-->
+                        <!-- This option will save all original interfaces files (without obfuscate) in all packages.-->
+                        <option>-keep interface * extends * { *; }</option>
+                        <!-- This option will save all original defined annotations in all class in all packages.-->
+                        <option>-keepclassmembers class * {
+                                @org.springframework.beans.factory.annotation.Autowired *;
+                                @org.springframework.beans.factory.annotation.Value *;
+                            }
+                        </option>
+                    </options>
+                    <libs>
+                        <!-- Include main JAVA library required.-->
+                        <lib>${java.home}/lib/rt.jar</lib>
+                        <!-- Include crypto JAVA library if necessary.-->
+                        <lib>${java.home}/lib/jce.jar</lib>
+                    </libs>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>5.3.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.slm.proguard.example.spring.boot.Application</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
