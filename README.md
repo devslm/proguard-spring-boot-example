@@ -6,4 +6,4 @@ For big spring boot projects we can't obfuscate all files because for example ma
 Most of the common rules specify in the pom.xml.
 
 # Decompiling files by Intellij
-We must unzip .jar and put package files in the project/target category. Then we can open target directory in intellij project-structure window and open class. This will be real decompiled class.
+We must unzip .jar and put package files in the project/target directory. Then we can open target directory in intellij project-structure window and open class. This will be real decompiled class.
