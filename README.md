@@ -1,3 +1,6 @@
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-%3E%3D1.5-green.svg)](https://projects.spring.io/spring-boot/)
+[![Proguard Maven Plugin](https://img.shields.io/badge/Proguard%20Maven%20Plugin-%3E%3D5.3-blue.svg](https://sourceforge.net/projects/proguard/)
+
 # proguard-spring-boot-example
 Proguard Obfuscate Spring Boot Maven Plugin Example
 
