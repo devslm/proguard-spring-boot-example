@@ -6,17 +6,33 @@
 
     <groupId>com.slm.proguard.example</groupId>
     <artifactId>spring.boot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.18.RELEASE</version>
+    </parent>
 
     <properties>
-        <spring.boot.version>1.5.1.RELEASE</spring.boot.version>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <proguard.version>6.1.0beta2</proguard.version>
+        <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring.boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -29,11 +45,13 @@
                 <executions>
                     <execution>
                         <phase>package</phase>
-                        <goals><goal>proguard</goal></goals>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <proguardVersion>5.3.3</proguardVersion>
+                    <proguardVersion>${proguard.version}</proguardVersion>
                     <injar>${project.build.finalName}.jar</injar>
                     <outjar>${project.build.finalName}.jar</outjar>
                     <obfuscate>true</obfuscate>
@@ -44,15 +62,28 @@
                              For example, invokes Class.forName('className')-->
                         <option>-adaptclassstrings</option>
                         <!-- This option will save all original annotations and etc. Otherwise all we be removed from files.-->
-                        <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,
-                            SourceFile,LineNumberTable,*Annotation*,EnclosingMethod</option>
+                        <option>-keepattributes
+                            Exceptions,
+                            InnerClasses,
+                            Signature,
+                            Deprecated,
+                            SourceFile,
+                            LineNumberTable,
+                            *Annotation*,
+                            EnclosingMethod
+                        </option>
                         <!-- This option will save all original names in interfaces (without obfuscate).-->
                         <option>-keepnames interface **</option>
                         <!-- This option will save all original methods parameters in files defined in -keep sections,
                              otherwise all parameter names will be obfuscate.-->
                         <option>-keepparameternames</option>
-                        <!-- This option will save all original class files (without obfuscate) but obfuscate all in domain package.-->
-                        <option>-keep class !com.slm.proguard.example.spring.boot.domain.** { *; }</option>
+                        <!-- This option will save all original class files (without obfuscate) but obfuscate all
+                             in domain and service packages.-->
+                        <option>-keep
+                            class com.slm.proguard.example.spring.boot.Application {
+                                public static void main(java.lang.String[]);
+                            }
+                        </option>
                         <!-- This option will save all original class files (without obfuscate) in service package-->
                         <!--<option>-keep class com.slm.proguard.example.spring.boot.service { *; }</option>-->
                         <!-- This option will save all original interfaces files (without obfuscate) in all packages.-->
@@ -75,9 +106,19 @@
                     <dependency>
                         <groupId>net.sf.proguard</groupId>
                         <artifactId>proguard-base</artifactId>
-                        <version>5.3.3</version>
+                        <version>${proguard.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
             </plugin>
 
             <!-- Maven assembly must be run after proguard obfuscation so it take already obfuscated files.-->

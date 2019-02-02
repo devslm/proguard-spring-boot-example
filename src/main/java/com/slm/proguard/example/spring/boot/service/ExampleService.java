@@ -11,7 +11,11 @@ public class ExampleService {
     private ExampleData exampleData;
 
     public ExampleService() {
-        this.exampleData = new ExampleData();
+        this.exampleData = ExampleData.builder()
+            .variableInt(20)
+            .variableString("Test String")
+            .variableObject(new Object())
+            .build();
     }
 
     public int calculate() {
