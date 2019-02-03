@@ -1,4 +1,5 @@
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-1.5-green.svg)](https://projects.spring.io/spring-boot/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.1.2-green.svg)](https://projects.spring.io/spring-boot/)
+[![Spring Boot](https://img.shields.io/badge/JDK-11-green.svg)](https://projects.spring.io/spring-boot/)
 [![Proguard Maven Plugin](https://img.shields.io/badge/Proguard%20Maven%20Plugin-6.1.0beta2-blue.svg)](https://sourceforge.net/projects/proguard/)
 
 ## proguard-spring-boot-example
@@ -15,12 +16,20 @@ We must unzip .jar and put package files in the project/target directory. Then w
 project-structure window and open class. This will be real decompiled class.
 
 ## Supporting JDK
-**Currently supported only JDK 1.8!**
+**Currently supported JDK 1.8 and JDK 11 (may be also JDK 9 and JDK 10 - I not tested them)!**
 
 JDK after 1.8 (9, 10, 11 and etc.) now using modular structure, so they don't contain files 
 **rt.jar** and **jce.jar**.
 
-You can try to add all modules from **<jdk-path>/jmods** directory to the **libs** section in maven pom.
+I remove all libraries from the **libs** section in pom (empty block **<libs></libs>**). If you application want
+them you can add system libraries manually, for example:
+```
+<libs>
+    <lib>${java.home}/lib/rt.jar</lib>
+    <lib>${java.home}/lib/jce.jar</lib>
+</libs>
+```
+For JDK 11 you can try to add all modules from **<jdk-path>/jmods** directory to the **libs** section in maven pom.
 
 ## How it works
 Obfuscation step must go before packaging **.jar** so in pom file you can see right order of steps.
@@ -32,7 +41,9 @@ for all available options and descriptions.
 ## Troubleshooting
   - If application can't start try remove some classes/packages from obfuscation (option **-keep**)
   - We use option **-dontoptimize**, but you can try to use optimization but recheck required after every changes
-  - If maven build failed check your JDK version (**currently supports only JDK 1.8**)
+  - If maven build failed check your JDK version (**currently supports only JDK 1.8 and JDK 11**). See also error 
+    output, may be you compiling under JDK 11 and not removed libraries from the **libs** block so **proguard**
+    can't find **rt.jar** and others.
   - Some options from the **proguard project** may not work properly, recheck any new option
 
 #### Used banner font
