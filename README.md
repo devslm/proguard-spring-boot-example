@@ -21,7 +21,7 @@ project-structure window and open class. This will be real decompiled class.
 JDK after 1.8 (9, 10, 11 and etc.) now using modular structure, so they don't contain files 
 **rt.jar** and **jce.jar**.
 
-I remove all libraries from the **libs** section in pom (empty block **<libs></libs>**). If you application want
+I remove all libraries from the **libs** section in pom (empty block **<libs></libs>**). If your application want
 them you can add system libraries manually, for example:
 ```
 <libs>
