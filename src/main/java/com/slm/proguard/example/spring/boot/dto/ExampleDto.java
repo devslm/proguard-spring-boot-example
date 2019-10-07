@@ -1,4 +1,4 @@
-package com.slm.proguard.example.spring.boot.domain;
+package com.slm.proguard.example.spring.boot.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class ExampleData {
+public class ExampleDto {
     private String variableString;
     private int variableInt;
     private Object variableObject;

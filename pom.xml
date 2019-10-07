@@ -6,20 +6,21 @@
 
     <groupId>com.slm.proguard.example</groupId>
     <artifactId>spring.boot</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
+        <version>2.1.9.RELEASE</version>
     </parent>
 
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <proguard.version>6.1.0beta2</proguard.version>
-        <lombok.version>1.18.4</lombok.version>
+        <proguard.version>6.2.0</proguard.version>
+        <proguard.maven.plugin.version>2.1.1</proguard.maven.plugin.version>
+        <lombok.version>1.18.10</lombok.version>
     </properties>
 
     <dependencies>
@@ -42,7 +43,7 @@
             <plugin>
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
-                <version>2.0.14</version>
+                <version>${proguard.maven.plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

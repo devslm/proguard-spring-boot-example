@@ -1,17 +1,19 @@
 package com.slm.proguard.example.spring.boot.service;
 
-import com.slm.proguard.example.spring.boot.domain.ExampleData;
+import com.slm.proguard.example.spring.boot.dto.ExampleDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by seregaSLM on 07.07.2017.
  */
+@Slf4j
 @Service
 public class ExampleService {
-    private ExampleData exampleData;
+    private ExampleDto exampleDto;
 
     public ExampleService() {
-        this.exampleData = ExampleData.builder()
+        this.exampleDto = ExampleDto.builder()
             .variableInt(20)
             .variableString("Test String")
             .variableObject(new Object())
@@ -19,6 +21,6 @@ public class ExampleService {
     }
 
     public int calculate() {
-        return exampleData.getVariableInt() * 10;
+        return exampleDto.getVariableInt() * 10;
     }
 }
