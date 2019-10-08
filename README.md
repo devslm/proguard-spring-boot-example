@@ -22,6 +22,12 @@ for example:
   - for JDK 9 change to ```<java.version>1.9</java.version>```
   - for JDK 10 change to ```<java.version>10</java.version>```
 
+## After building
+After building you can run ```spring.boot.jar``` in the **target** directory, for example:
+```
+java -jar spring.boot.jar
+```
+
 ## Supporting JDK
 **Currently supported JDK 1.8 and JDK 11 (may be also JDK 9 and JDK 10 - I not tested them)!**
 
