@@ -15,6 +15,13 @@ Most of the common rules specify in the pom.xml.
 We must unzip .jar and put package files in the project/target directory. Then we can open target directory in intellij 
 project-structure window and open class. This will be real decompiled class.
 
+## Before use
+First you must change the setting ```<java.version>11</java.version>``` in the **pom.xml** to match your JDK version,
+for example:
+  - for JDK 8 change to ```<java.version>1.8</java.version>```
+  - for JDK 9 change to ```<java.version>1.9</java.version>```
+  - for JDK 10 change to ```<java.version>10</java.version>```
+
 ## Supporting JDK
 **Currently supported JDK 1.8 and JDK 11 (may be also JDK 9 and JDK 10 - I not tested them)!**
 
