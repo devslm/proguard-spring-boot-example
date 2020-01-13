@@ -1,4 +1,4 @@
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.1.9-green.svg)](https://projects.spring.io/spring-boot/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.2.2-green.svg)](https://projects.spring.io/spring-boot/)
 [![Spring Boot](https://img.shields.io/badge/JDK-11-green.svg)](https://projects.spring.io/spring-boot/)
 [![Proguard Maven Plugin](https://img.shields.io/badge/Proguard%20Maven%20Plugin-6.2.0-blue.svg)](https://sourceforge.net/projects/proguard/)
 
