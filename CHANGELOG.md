@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.2.0] - 2021-08-05
+#### Added:
+  - Docker compose file to test all supported JDKs (9, 11, 14)
+  - Integration test to test context startup
+  - Spring @Configuration file example
+  - Jackson object mapper example (added proguard options to keep Jackson annotations)
+  - ExampleObjectMapperDto class with @JsonProperty annotations to show Jackson mapper example
+
+### Changed
+  - JDK 11 compiler
+  - Spring boot version increased to 2.5.3
+  - Proguard version increased to 7.0.0
+  - Proguard maven plugin version increased to 2.3.1
+  - Lombok version increased to 1.18.20
+  - Update README
+
+
 ## [2.1.0] - 2019-10-09
 #### Added:
   - Global lombok config
