@@ -5,8 +5,8 @@ logging:
   level:
     root: "INFO"
     com.slm.proguard: "INFO"
-  path: "/tmp"
-  file: "/tmp/proguard-example.log"
+  file:
+    path: "/tmp/proguard-example.log"
   pattern:
     console: "%d{ISO8601} [%-5level] [%-10thread] [%-30logger{2}] - %m%n"
     file: "%d{ISO8601} [%-5level] [%-10thread] [%-30logger{2}] - %m%n"

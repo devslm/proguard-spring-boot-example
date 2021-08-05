@@ -1,0 +1,31 @@
+version: "2"
+services:
+  maven-jdk-9:
+    image: maven:3.5.4-jdk-9-slim
+    container_name: maven-jdk-9
+    working_dir: /usr/src/proguard-spring-boot-example
+    command: bash -c "cp -r /tmp/* /usr/src/proguard-spring-boot-example &&
+        mvn -T 2C -Djava.version=9 clean install &&
+        java -jar ./target/spring.boot.jar"
+    volumes:
+      - ../../../:/tmp
+
+  maven-jdk-11:
+    image: maven:3.6.3-adoptopenjdk-11
+    container_name: maven-jdk-11
+    working_dir: /usr/src/proguard-spring-boot-example
+    command: bash -c "cp -r /tmp/* /usr/src/proguard-spring-boot-example &&
+        mvn -T 2C -Djava.version=11 clean install &&
+        java -jar ./target/spring.boot.jar"
+    volumes:
+      - ../../../:/tmp
+
+  maven-jdk-14:
+    image: maven:3.6.3-adoptopenjdk-14
+    container_name: maven-jdk-14
+    working_dir: /usr/src/proguard-spring-boot-example
+    command: bash -c "cp -r /tmp/* /usr/src/proguard-spring-boot-example &&
+        mvn -T 2C -Djava.version=14 clean install &&
+        java -jar ./target/spring.boot.jar"
+    volumes:
+      - ../../../:/tmp

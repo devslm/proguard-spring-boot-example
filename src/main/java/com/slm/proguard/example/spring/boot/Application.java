@@ -22,11 +22,19 @@ public class Application {
     }
 
     @PostConstruct
-    public void testOutput() {
+    public void testOutput() throws Exception {
         LOGGER.info("#");
         LOGGER.info("###");
         LOGGER.info("##################################### Test Output ##################################");
         LOGGER.info("{}", exampleService.calculate());
+        LOGGER.info("####################################################################################");
+        LOGGER.info("###");
+        LOGGER.info("#");
+
+        LOGGER.info("#");
+        LOGGER.info("###");
+        LOGGER.info("############################## Test Output Object Mapper ###########################");
+        LOGGER.info("{}", exampleService.serializeObjectToString());
         LOGGER.info("####################################################################################");
         LOGGER.info("###");
         LOGGER.info("#");
