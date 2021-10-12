@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 
 /**
- * Created by seregaSLM on 07.07.2017.
+ * Copyright (c) 2021 SLM Dev <https://github.com/devslm/proguard-spring-boot-example/>. All rights reserved.
  */
 @Slf4j
 @Service

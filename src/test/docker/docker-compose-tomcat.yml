@@ -1,0 +1,13 @@
+version: "2"
+services:
+  tomcat-jdk-11:
+    image: tomcat:9.0-jdk11-temurin-focal
+    container_name: tomcat-jdk-11
+    working_dir: /usr/src/proguard-spring-boot-example
+    command: bash -c "
+        cp /tmp/target/app.war /usr/local/tomcat/webapps &&
+        /usr/local/tomcat/bin/catalina.sh run"
+    ports:
+      - 8080:8080
+    volumes:
+      - ../../../:/tmp

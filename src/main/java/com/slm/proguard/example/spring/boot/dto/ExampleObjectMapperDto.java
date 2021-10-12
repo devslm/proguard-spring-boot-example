@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * Created by seregaSLM on 17.07.2020.
+ *
+ * Copyright (c) 2021 SLM Dev <https://github.com/devslm/proguard-spring-boot-example/>. All rights reserved.
  *
  * Without {@code @JsonProperty} we see only obfuscated random names in JSON,
  * so we should annotate all DTO classes that will be serialized.
