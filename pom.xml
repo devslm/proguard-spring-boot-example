@@ -96,8 +96,8 @@
                         <!-- This option will save all original class files (without obfuscate) but obfuscate all
                              in domain and service packages.-->
                         <option>-keep
-                            class com.slm.proguard.example.spring.boot.Application {
-                                public static void main(java.lang.String[]);
+                            class com.slm.proguard.example.spring.boot.Application extends org.springframework.boot.web.servlet.support.SpringBootServletInitializer {
+
                             }
                         </option>
                         <!-- This option ignore warnings such as duplicate class definitions and classes in incorrectly
@@ -112,9 +112,12 @@
                         <option>-keep class com.fasterxml.jackson.** { *; }</option>
                         <option>-keep class org.json.JSONObject.** {** put(java.lang.String,java.util.Map);}</option>
                         <option>-keepclassmembers class * {
-                                @org.springframework.context.annotation.Bean *;
                                 @org.springframework.beans.factory.annotation.Autowired *;
+                                @org.springframework.beans.factory.annotation.Qualifier *;
                                 @org.springframework.beans.factory.annotation.Value *;
+                                @org.springframework.beans.factory.annotation.Required *;
+                                @org.springframework.context.annotation.Bean *;
+                                @org.springframework.context.annotation.Primary *;
                                 @org.springframework.stereotype.Service *;
                                 @org.springframework.web.bind.annotation.RestController *;
                             }
@@ -145,22 +148,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-
-            <!-- Maven assembly must be run after proguard obfuscation so it take already obfuscated files.-->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <configuration>
-                            <mainClass>com.slm.proguard.example.spring.boot.Application</mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
